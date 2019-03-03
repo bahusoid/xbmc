@@ -212,7 +212,7 @@ void CXBMCApp::onStart()
     intentFilter.addAction("android.intent.action.BATTERY_CHANGED");
     intentFilter.addAction("android.intent.action.SCREEN_ON");
     intentFilter.addAction("android.intent.action.HEADSET_PLUG");
-    intentFilter.addAction("android.media.action.HDMI_AUDIO_PLUG");
+//    intentFilter.addAction("android.media.action.HDMI_AUDIO_PLUG");
     intentFilter.addAction("android.intent.action.SCREEN_OFF");
     intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
     registerReceiver(*this, intentFilter);
@@ -445,7 +445,7 @@ bool CXBMCApp::IsHeadsetPlugged()
 
 bool CXBMCApp::IsHDMIPlugged()
 {
-  return m_hdmiPlugged;
+  return true;
 }
 
 void CXBMCApp::run()
@@ -1025,8 +1025,8 @@ void CXBMCApp::onReceive(CJNIIntent intent)
         if (g_application.IsInitialized())
         {
           CWinSystemBase* winSystem = CServiceBroker::GetWinSystem();
-          if (winSystem && dynamic_cast<CWinSystemAndroid*>(winSystem))
-            dynamic_cast<CWinSystemAndroid*>(winSystem)->SetHDMIState(m_hdmiPlugged);
+//          if (winSystem && dynamic_cast<CWinSystemAndroid*>(winSystem))
+//            dynamic_cast<CWinSystemAndroid*>(winSystem)->SetHDMIState(m_hdmiPlugged);
 
           m_hdmiReportedState = m_hdmiPlugged;
         }
