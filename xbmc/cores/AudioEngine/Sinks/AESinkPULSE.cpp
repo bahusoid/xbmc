@@ -672,7 +672,7 @@ bool CAESinkPULSE::Initialize(AEAudioFormat &format, std::string &device)
     else
     {
       map.channels = 2;
-	    format.m_channelLayout = AE_CH_LAYOUT_2_0;
+      format.m_channelLayout = AE_CH_LAYOUT_2_0;
     }
 #else
     map.channels = 2;
