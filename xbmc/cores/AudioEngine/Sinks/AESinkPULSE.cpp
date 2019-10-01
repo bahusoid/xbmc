@@ -106,12 +106,14 @@ static pa_encoding AEStreamFormatToPulseEncoding(CAEStreamInfo::DataType type)
     case CAEStreamInfo::STREAM_TYPE_DTSHD_CORE:
       return PA_ENCODING_DTS_IEC61937;
 
+#if PA_CHECK_VERSION(13,0,0)
     case CAEStreamInfo::STREAM_TYPE_DTSHD_MA:
     case CAEStreamInfo::STREAM_TYPE_DTSHD:
       return PA_ENCODING_DTSHD_IEC61937;
 
     case CAEStreamInfo::STREAM_TYPE_TRUEHD:
       return PA_ENCODING_TRUEHD_IEC61937;
+#endif
 
     case CAEStreamInfo::STREAM_TYPE_EAC3:
       return PA_ENCODING_EAC3_IEC61937;
