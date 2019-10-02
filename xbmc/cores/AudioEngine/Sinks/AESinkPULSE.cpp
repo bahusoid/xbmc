@@ -486,6 +486,7 @@ static void SinkInfoRequestCallback(pa_context *c, const pa_sink_info *i, int eo
           break;
         case PA_ENCODING_DTSHD_IEC61937:
           device.m_streamTypes.push_back(CAEStreamInfo::STREAM_TYPE_DTSHD);
+          device.m_streamTypes.push_back(CAEStreamInfo::STREAM_TYPE_DTSHD_MA);
           device.m_channels = AE_CH_LAYOUT_7_1;
           device_type = AE_DEVTYPE_HDMI;
           break;
