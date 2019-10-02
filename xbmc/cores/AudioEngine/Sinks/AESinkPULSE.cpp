@@ -108,8 +108,14 @@ static pa_encoding AEStreamFormatToPulseEncoding(CAEStreamInfo::DataType type)
 
 #if PA_CHECK_VERSION(13,0,0)
     case CAEStreamInfo::STREAM_TYPE_DTSHD_MA:
-    case CAEStreamInfo::STREAM_TYPE_DTSHD:
       return PA_ENCODING_DTSHD_IEC61937;
+
+    case CAEStreamInfo::STREAM_TYPE_DTSHD:
+#ifdef PA_ENCODING_DTSHD_HR_IEC61937
+      return PA_ENCODING_DTSHD_HR_IEC61937;
+#else
+      return PA_ENCODING_DTSHD_IEC61937;
+#endif
 
     case CAEStreamInfo::STREAM_TYPE_TRUEHD:
       return PA_ENCODING_TRUEHD_IEC61937;
@@ -484,6 +490,12 @@ static void SinkInfoRequestCallback(pa_context *c, const pa_sink_info *i, int eo
           device.m_channels = AE_CH_LAYOUT_7_1;
           device_type = AE_DEVTYPE_HDMI;
           break;
+#ifdef PA_ENCODING_DTSHD_HR_IEC61937
+        case PA_ENCODING_DTSHD_HR_IEC61937:
+          device.m_streamTypes.push_back(CAEStreamInfo::STREAM_TYPE_DTSHD);
+          device_type = AE_DEVTYPE_HDMI;
+          break;
+#endif
         case PA_ENCODING_DTSHD_IEC61937:
           device.m_streamTypes.push_back(CAEStreamInfo::STREAM_TYPE_DTSHD);
           device.m_streamTypes.push_back(CAEStreamInfo::STREAM_TYPE_DTSHD_MA);
