@@ -926,6 +926,9 @@ void CAESinkAUDIOTRACK::UpdateAvailablePassthroughCapabilities()
 
   if (aml_present() && CJNIAudioManager::GetSDKVersion() < 23)
   {
+    // forcing PCM as AFAIK it's the only way it works on AML Android 5 devices
+    CJNIAudioFormat::ENCODING_IEC61937 = CJNIAudioFormat::ENCODING_PCM_16BIT;
+
     // passthrough
     m_info.m_wantsIECPassthrough = true;
     m_sink_sampleRates.insert(44100);
