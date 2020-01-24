@@ -55,7 +55,7 @@ bool CAESinkAUDIOTRACK::HasAmlHD()
   if (CJNIAudioFormat::ENCODING_DTSHD_MA != -1)
     CJNIAudioFormat::ENCODING_DTS_HD = CJNIAudioFormat::ENCODING_DTSHD_MA;
 
-  return ((CJNIAudioFormat::ENCODING_TRUEHD != -1) && (CJNIAudioFormat::ENCODING_DTSHD != -1));
+  return ((CJNIAudioFormat::ENCODING_TRUEHD != -1) || (CJNIAudioFormat::ENCODING_DTSHD != -1));
 }
 
 static int AEStreamFormatToATFormat(const CAEStreamInfo::DataType& dt)
@@ -930,6 +930,15 @@ void CAESinkAUDIOTRACK::UpdateAvailablePassthroughCapabilities()
     m_info.m_wantsIECPassthrough = true;
     m_sink_sampleRates.insert(44100);
     m_sink_sampleRates.insert(48000);
+
+    m_info.m_streamTypes.clear();
+    m_info.m_streamTypes.push_back(CAEStreamInfo::STREAM_TYPE_AC3);
+    m_info.m_streamTypes.push_back(CAEStreamInfo::STREAM_TYPE_DTSHD_CORE);
+    m_info.m_streamTypes.push_back(CAEStreamInfo::STREAM_TYPE_DTS_1024);
+    m_info.m_streamTypes.push_back(CAEStreamInfo::STREAM_TYPE_DTS_2048);
+    m_info.m_streamTypes.push_back(CAEStreamInfo::STREAM_TYPE_DTS_512);
+    CLog::Log(LOGDEBUG, "AESinkAUDIOTrack: Using legacy AML IEC PT mode: %d", CJNIAudioFormat::ENCODING_IEC61937);
+
     if (HasAmlHD())
     {
       m_sink_sampleRates.insert(96000);
