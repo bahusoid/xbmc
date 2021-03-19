@@ -32,7 +32,6 @@ jobs:
       uses: android-actions/setup-android@v2.0.2
     - name: Install Android SDK dependencies
       run: |
-        echo y | sdkmanager "ndk;${{ env.ANDROID_NDK_VERSION }}"
         echo y | sdkmanager "cmake;${{ env.ANDROID_CMAKE_VERSION }}"
     - name: Checkout
       uses: actions/checkout@v2
