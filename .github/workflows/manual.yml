@@ -62,5 +62,7 @@ jobs:
         export NINJA_EXE=${CMAKE_PATH}/bin/ninja
         export ANDROID_NDK=${ANDROID_SDK_ROOT}/ndk/${{ env.ANDROID_NDK_VERSION }}
         export ANDROID_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake
-        cd kodi/tools/depends
+        cd tools/depends
         ./bootstrap
+        ./configure --host=arm-linux-androideabi
+        ./make apk
