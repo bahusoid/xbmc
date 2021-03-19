@@ -56,5 +56,5 @@ jobs:
         export ANDROID_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake
         cd tools/depends
         ./bootstrap
-        ./configure --host=arm-linux-androideabi --prefix=$HOME/xbmc-depends --with-ndk-path=${ANDROID_NDK} --with-sdk-path=${{env.ANDROID_SDK_ROOT}}
+        ./configure --host=arm-linux-androideabi --prefix=$HOME/xbmc-depends --with-ndk-path=${ANDROID_SDK_ROOT}/ndk-bundle --with-sdk-path=${{env.ANDROID_SDK_ROOT}}
         ./make apk
