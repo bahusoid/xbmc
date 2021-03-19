@@ -18,6 +18,8 @@ on:
 env:
   ANDROID_NDK_VERSION: '21.3.6528147'
   ANDROID_CMAKE_VERSION: '3.10.2.4988404'
+  ANDROID_HOME: '/usr/local/lib/android/sdk/ndk-bundle'
+  ANDROID_SDK_ROOT: '/usr/local/lib/android/sdk/ndk-bundle'
 jobs:
   build_android:
     strategy:
@@ -58,5 +60,5 @@ jobs:
         export ANDROID_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake
         cd tools/depends
         ./bootstrap
-        ./configure --host=arm-linux-androideabi --prefix=xbmc-depends
+        ./configure --host=arm-linux-androideabi --prefix=$HOME/xbmc-depends
         ./make apk
