@@ -52,9 +52,9 @@ jobs:
         CMAKE_PATH=${ANDROID_SDK_ROOT}/cmake/${{ env.ANDROID_CMAKE_VERSION }}
         export PATH=${CMAKE_PATH}/bin:$PATH
         export NINJA_EXE=${CMAKE_PATH}/bin/ninja
-        export ANDROID_NDK=${ANDROID_SDK_ROOT}/ndk/${{ env.ANDROID_NDK_VERSION }}
+        export ANDROID_NDK=${ANDROID_SDK_ROOT}/ndk-bundle
         export ANDROID_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake
         cd tools/depends
         ./bootstrap
-        ./configure --host=arm-linux-androideabi --prefix=$HOME/xbmc-depends --with-ndk-path=/usr/local/lib/android/sdk/ndk-bundle
+        ./configure --host=arm-linux-androideabi --prefix=$HOME/xbmc-depends --with-ndk-path=${{ANDROID_NDK}} --with-sdk-path=${{ANDROID_SDK_ROOT}}
         ./make apk
