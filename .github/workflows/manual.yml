@@ -49,7 +49,7 @@ jobs:
     - name: Build libretro Core
       if: ${{ matrix.build-type == 'libretro' }}
       run: |
-        sudo apt-get install libcurl4-openssl-dev
+        sudo apt-get install autoconf build-essential curl default-jdk gawk git gperf lib32stdc++6 lib32z1 lib32z1-dev libcurl4-openssl-dev unzip zlib1g-dev
         CMAKE_PATH=${ANDROID_SDK_ROOT}/cmake/${{ env.ANDROID_CMAKE_VERSION }}
         export PATH=${CMAKE_PATH}/bin:$PATH
         export NINJA_EXE=${CMAKE_PATH}/bin/ninja
