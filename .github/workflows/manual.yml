@@ -16,10 +16,7 @@ on:
         # Input has to be provided for the workflow to run
         required: true
 env:
-  ANDROID_NDK_VERSION: '21.3.6528147'
   ANDROID_CMAKE_VERSION: '3.10.2.4988404'
-  ANDROID_HOME: '/usr/local/lib/android/sdk/ndk-bundle'
-  ANDROID_SDK_ROOT: '/usr/local/lib/android/sdk/ndk-bundle'
 jobs:
   build_android:
     strategy:
