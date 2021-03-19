@@ -57,4 +57,4 @@ jobs:
         cd tools/depends
         ./bootstrap
         ./configure --host=arm-linux-androideabi --prefix=$HOME/xbmc-depends --with-ndk-path=${ANDROID_SDK_ROOT}/ndk-bundle --with-sdk-path=${{env.ANDROID_SDK_ROOT}}
-        make apk
+        make
