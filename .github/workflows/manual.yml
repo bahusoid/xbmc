@@ -29,6 +29,8 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v2.0.2
     - name: Install Android SDK dependencies
       run: |
         echo y | sdkmanager "ndk;${{ env.ANDROID_NDK_VERSION }}"
